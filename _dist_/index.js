@@ -6,6 +6,13 @@ const urlBase = 'https://platzi-avo.vercel.app';
 const urlApi = '/api/avo';
 const allItems = [];
 const appNode = document.querySelector('#container');
+const formatPrice = ( price ) => {
+const newPrice =  new window.Intl.NumberFormat('en-EN', {
+    style: 'currency',
+    currency: 'USD'
+  }).format( price );
+  return newPrice;
+}
 
 //petición con promesas
 window.fetch( `${ urlBase }${ urlApi }` )
@@ -23,7 +30,7 @@ window.fetch( `${ urlBase }${ urlApi }` )
   title.className = 'title';
   //Price
   const price = document.createElement('span');
-  price.textContent = element.price;
+  price.textContent = formatPrice( element.price );
   price.className = 'price'
   //Container
   const container = document.createElement('div')
